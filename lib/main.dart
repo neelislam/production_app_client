@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:production_app_client/pages/home_page.dart';
 import 'package:production_app_client/pages/login_page.dart';
 import 'package:production_app_client/pages/register_page.dart';
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: RegisterPage(),
+      home: HomePage(),
     );
   }
 }
