@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:production_app_client/pages/widgets/drop_down_button.dart';
+import 'package:production_app_client/pages/widgets/multi_select_dropdown.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -29,11 +30,14 @@ class HomePage extends StatelessWidget {
           ),
           Row(
             children: [
-              DropDownButton(
-                items: ['Price: Low to high', 'Price: Low to high'],
-                selectedItemText: 'Price Sort',
-                onSelected: (selected) {},
+              Flexible(
+                child: DropDownButton(
+                  items: ['Price: Low to high', 'Price: Low to high'],
+                  selectedItemText: 'Price Sort',
+                  onSelected: (selected) {},
+                ),
               ),
+              Flexible(child: MultiSelectDropdown())
             ],
           ),
         ],
