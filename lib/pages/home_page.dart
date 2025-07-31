@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:production_app_client/pages/product_description.dart';
 import 'package:production_app_client/pages/widgets/drop_down_button.dart';
 import 'package:production_app_client/pages/widgets/multi_select_dropdown.dart';
 import 'package:production_app_client/pages/widgets/product_card.dart';
@@ -57,10 +58,17 @@ class HomePage extends StatelessWidget {
               itemCount: 10,
               itemBuilder: (context, index) {
                 return ProductCard(
-                  name: '',
-                  imageUrl: '',
-                  price: '',
-                  offerTag: '',
+                  name: 'English Book',
+                  imageUrl:
+                      'https://t3.ftcdn.net/jpg/04/98/10/60/360_F_498106090_1dXlGGTRtmPoZuBdDOT70lSF9qgFZQ1r.jpg',
+                  price: '200',
+                  offerTag: '20% off',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context)=>const ProductDescription())
+                    );
+                  },
                 );
               },
             ),
