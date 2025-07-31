@@ -4,38 +4,31 @@ import 'package:get/get.dart';
 
 import '../models/user/user.dart';
 
-class LoginController extends GetxController{
-    FirebaseFirestore firestore = FirebaseFirestore.instance;
-    late CollectionReference userCollection;
+class LoginController extends GetxController {
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  late CollectionReference userCollection;
 
-    @override
+  @override
   void onInit() {
     userCollection = firestore.collection('users');
     super.onInit();
   }
 
+  adduser(){
+    try {
+      DocumentReference doc = userCollection.doc();
+      User user = User(id: doc.id, name: 'from neel testing', number: 1234567);
 
-    adduser() {
-        try {
-            DocumentReference doc = userCollection.doc();
-            User user = User(
-                id: doc.id,
-                name: 'from neel testing',
-                number: 1234567,
-            );
-
-            final productJson = user.toJson();
-            doc.set(productJson);
-            Get.snackbar(
-                'Success',
-                'User added successfully',
-                colorText: Colors.green,
-            );
-        } catch (e) {
-            Get.snackbar('Error', e.toString(), colorText: Colors.red);
-            print(e);
-        }
+      final userJson = user.toJson();
+      doc.set(userJson);
+      Get.snackbar(
+        'Success',
+        'User added successfully',
+        colorText: Colors.green,
+      );
+    } catch (e) {
+      Get.snackbar('Error', e.toString(), colorText: Colors.red);
+      print(e);
     }
-
-
+  }
 }
