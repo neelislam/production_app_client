@@ -1,9 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:production_app_client/pages/home_page.dart';
 import 'package:production_app_client/pages/login_page.dart';
 import 'package:production_app_client/pages/register_page.dart';
 
-void main() {
+import 'firebase_option.dart';
+
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: firebaseOptions);
   runApp(const MyApp());
 }
 
