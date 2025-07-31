@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:production_app_client/pages/widgets/drop_down_button.dart';
 import 'package:production_app_client/pages/widgets/multi_select_dropdown.dart';
+import 'package:production_app_client/pages/widgets/product_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -37,8 +38,32 @@ class HomePage extends StatelessWidget {
                   onSelected: (selected) {},
                 ),
               ),
-              Flexible(child: MultiSelectDropdown())
+              Flexible(
+                child: MultiSelectDropdown(
+                  items: ['item 1', 'item 2', 'item 3'],
+                  onSelectionChanged: (selectedItems) {},
+                ),
+              ),
             ],
+          ),
+          Expanded(
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 0.8,
+                crossAxisSpacing: 8,
+                mainAxisSpacing: 8,
+              ),
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return ProductCard(
+                  name: '',
+                  imageUrl: '',
+                  price: '',
+                  offerTag: '',
+                );
+              },
+            ),
           ),
         ],
       ),

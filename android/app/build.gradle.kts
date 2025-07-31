@@ -25,7 +25,10 @@ android {
         applicationId = "com.example.production_app_client"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
+
+        // FIX: Increased minSdkVersion to 23 to be compatible with Firebase Firestore.
+        // The Firebase Firestore library (version 26.0.0) requires a minimum API level of 23.
+        minSdk = 23
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
