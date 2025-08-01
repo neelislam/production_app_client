@@ -26,7 +26,7 @@ class LoginController extends GetxController {
         Get.snackbar(
           'Error',
           'Please enter yur name and number',
-          colorText: Colors.green,
+          colorText: Colors.red,
         );
         return;
       }
