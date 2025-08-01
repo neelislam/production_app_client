@@ -32,6 +32,7 @@ class _RegisterPageState extends State<RegisterPage> {
               SizedBox(height: 30),
               TextField(
                 keyboardType: TextInputType.phone,
+                controller: logic.registerNameController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
@@ -44,6 +45,7 @@ class _RegisterPageState extends State<RegisterPage> {
               SizedBox(height: 20),
               TextField(
                 keyboardType: TextInputType.text,
+                controller: logic.registerNumberController,
                 // obscureText: true,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(

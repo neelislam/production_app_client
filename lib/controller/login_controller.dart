@@ -8,6 +8,11 @@ class LoginController extends GetxController {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   late CollectionReference userCollection;
 
+  TextEditingController registerNameController = TextEditingController();
+  TextEditingController registerNumberController = TextEditingController();
+
+
+
   @override
   void onInit() {
     userCollection = firestore.collection('users');
@@ -17,7 +22,9 @@ class LoginController extends GetxController {
   adduser(){
     try {
       DocumentReference doc = userCollection.doc();
-      User user = User(id: doc.id, name: 'from neel testing', number: 1234567);
+      User user = User(id: doc.id,
+          name: registerNameController.text,
+          number:  int.parse(registerNumberController.text));
 
       final userJson = user.toJson();
       doc.set(userJson);
