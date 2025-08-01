@@ -20,7 +20,16 @@ class LoginController extends GetxController {
   }
 
   adduser(){
+
     try {
+      if(registerNameController.text.isEmpty || registerNumberController.text.isEmpty){
+        Get.snackbar(
+          'Error',
+          'Please enter yur name and number',
+          colorText: Colors.green,
+        );
+        return;
+      }
       DocumentReference doc = userCollection.doc();
       User user = User(id: doc.id,
           name: registerNameController.text,
