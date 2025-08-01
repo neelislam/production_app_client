@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:production_app_client/controller/login_controller.dart';
+import 'package:production_app_client/pages/widgets/otp_text_field.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -12,65 +13,82 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<LoginController>(builder: (logic) {
-      return Scaffold(
-        body: Container(
-          width: double.maxFinite,
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(color: Colors.blueGrey[50]),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Register',
-                style: TextStyle(
-                  fontSize: 48,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.deepPurple,
-                ),
-              ),
-              SizedBox(height: 30),
-              TextField(
-                keyboardType: TextInputType.phone,
-                controller: logic.registerNameController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
+    return GetBuilder<LoginController>(
+      builder: (logic) {
+        return Scaffold(
+          body: Container(
+            width: double.maxFinite,
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(color: Colors.blueGrey[50]),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Register',
+                  style: TextStyle(
+                    fontSize: 48,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.deepPurple,
                   ),
-                  prefixIcon: Icon(Icons.phone_android),
-                  labelText: 'Name',
-                  hintText: 'Enter your name',
                 ),
-              ),
-              SizedBox(height: 20),
-              TextField(
-                keyboardType: TextInputType.text,
-                controller: logic.registerNumberController,
-                // obscureText: true,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
+                SizedBox(height: 30),
+                TextField(
+                  keyboardType: TextInputType.phone,
+                  controller: logic.registerNameController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    prefixIcon: Icon(Icons.phone_android),
+                    labelText: 'Name',
+                    hintText: 'Enter your name',
                   ),
-                  prefixIcon: Icon(Icons.phone_android),
-                  labelText: 'Mobile Number',
-                  hintText: 'Enter your mobile number',
                 ),
-              ),
-              SizedBox(height: 30),
-              ElevatedButton(
-                onPressed: () {
-                  logic.adduser();
-                },
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.deepPurple,
+                SizedBox(height: 20),
+                TextField(
+                  keyboardType: TextInputType.text,
+                  controller: logic.registerNumberController,
+                  // obscureText: true,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    prefixIcon: Icon(Icons.phone_android),
+                    labelText: 'Mobile Number',
+                    hintText: 'Enter your mobile number',
+                  ),
                 ),
-                child: Text('Register'),
-              ),
-            ],
+                SizedBox(height: 30),
+                OtpTextField(
+                  otpController: logic.otpController,
+                  visible: logic.otpFieldShow,
+                  onComplete: (otp) {
+                    logic.otpEntered = int.tryParse(otp ?? '000');
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    if (logic.otpFieldShow) {
+                      logic.adduser();
+                    } else {
+                      logic.sendOtp();
+                    }
+                    setState(() {});
+                  },
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.deepPurple,
+                  ),
+                  child: Text(logic.otpFieldShow ? 'Register' : 'Send OTP'),
+                ),
+                SizedBox(height: 20),
+                TextButton(onPressed: () {}, child: Text('Login')),
+              ],
+            ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 }

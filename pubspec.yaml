@@ -8,6 +8,7 @@ environment:
   sdk: ^3.8.1
 
 dependencies:
+  otp_text_field_v2: ^1.0.3
   dropdown_button2: ^2.3.9
   get: ^4.6.6
   firebase_core: ^2.24.2
@@ -20,6 +21,7 @@ dependencies:
 dev_dependencies:
   build_runner: ^2.4.7
   json_serializable: ^6.7.1
+
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
