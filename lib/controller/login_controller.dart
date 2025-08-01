@@ -42,6 +42,9 @@ class LoginController extends GetxController {
           'User added successfully',
           colorText: Colors.green,
         );
+        registerNameController.clear();
+        registerNumberController.clear();
+        otpController.clear();
 
       } else {
         Get.snackbar(

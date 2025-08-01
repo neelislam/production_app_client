@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:production_app_client/controller/login_controller.dart';
+import 'package:production_app_client/pages/login_page.dart';
 import 'package:production_app_client/pages/widgets/otp_text_field.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -83,7 +86,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: Text(logic.otpFieldShow ? 'Register' : 'Send OTP'),
                 ),
                 SizedBox(height: 20),
-                TextButton(onPressed: () {}, child: Text('Login')),
+                TextButton(onPressed: () {
+                  Get.to(LoginPage());
+                }, child: Text('Login')),
               ],
             ),
           ),
