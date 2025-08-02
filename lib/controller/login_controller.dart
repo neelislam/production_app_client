@@ -3,16 +3,23 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:otp_text_field_v2/otp_field_v2.dart';
 
 import '../models/user/user.dart';
+import '../pages/home_page.dart';
 
 class LoginController extends GetxController {
+
+
+  GetStorage box = GetStorage();
+
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   late CollectionReference userCollection;
 
   TextEditingController registerNameController = TextEditingController();
   TextEditingController registerNumberController = TextEditingController();
+  TextEditingController loginNumberController = TextEditingController();
 
   OtpFieldControllerV2 otpController = OtpFieldControllerV2();
   bool otpFieldShow = false;
@@ -24,6 +31,16 @@ class LoginController extends GetxController {
   void onInit() {
     userCollection = firestore.collection('users');
     super.onInit();
+  }
+
+
+  @override
+  void onReady(){
+    Map<String, dynamic>user = box.read('loginUser');
+    if(user != null){
+      Get.to(HomePage());
+    }
+    super.onReady();
   }
 
   adduser(){
@@ -98,4 +115,32 @@ class LoginController extends GetxController {
       update();
     }
   }
+  
+  
+  // Future<void> loginWithPhone() async {
+  //   String phoneNumber = loginNumberController.text;
+  //   if(phoneNumber.isEmpty){
+  //     var querySnapshot = await userCollection.where('number',isEqualTo: phoneNumber).limit(1).count();
+  //   if(querySnapshot.docs.isNotEmpty){
+  //     var userDoc = querySnapshot.docs.first;
+  //     var userData = userDoc.data() as Map<String, dynamic>;
+  //     box.write('loginUser' , userData);
+  //      loginNumberController.clear();
+//        Get.to(HomePage());
+  //     Get.snackbar(
+  //       'Success',
+  //       'Login Successfully',
+  //       colorText: Colors.green,
+  //     );
+  //
+  //
+  //   } else {
+  //     Get.snackbar(
+  //       'Error',
+  //       'Login Failed',
+  //       colorText: Colors.green,
+  //     );
+  //   }
+  //   }
+  // }
 }
