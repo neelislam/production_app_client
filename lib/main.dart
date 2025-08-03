@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:production_app_client/controller/home_controller.dart';
 import 'package:production_app_client/controller/login_controller.dart';
 import 'package:production_app_client/pages/home_page.dart';
 import 'package:production_app_client/pages/login_page.dart';
@@ -16,6 +17,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: firebaseOptions);
   Get.put(LoginController());
+  Get.put(HomeController());
   runApp(const MyApp());
 }
 
