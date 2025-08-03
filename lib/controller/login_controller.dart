@@ -26,6 +26,8 @@ class LoginController extends GetxController {
   int? otpSend ;
   int? otpEntered;
 
+  User? loginUser;
+
 
   @override
   void onInit() {
@@ -38,6 +40,7 @@ class LoginController extends GetxController {
   void onReady(){
     Map<String, dynamic>user = box.read('loginUser');
     if(user != null){
+      loginUser = User.fromJson(user);
       Get.to(HomePage());
     }
     super.onReady();

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:production_app_client/pages/login_page.dart';
 import 'package:production_app_client/pages/product_description.dart';
 import 'package:production_app_client/pages/widgets/drop_down_button.dart';
 import 'package:production_app_client/pages/widgets/multi_select_dropdown.dart';
@@ -12,7 +15,17 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('BooksShop', style: TextStyle(fontWeight: FontWeight.bold)),
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.logout))],
+        actions: [
+          IconButton(
+            onPressed: () {
+              GetStorage box = GetStorage();
+              box.erase();
+              Get.offAll(() => LoginPage());
+
+            },
+            icon: Icon(Icons.logout),
+          ),
+        ],
       ),
 
       body: Column(
@@ -66,7 +79,9 @@ class HomePage extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context)=>const ProductDescription())
+                      MaterialPageRoute(
+                        builder: (context) => const ProductDescription(),
+                      ),
                     );
                   },
                 );
