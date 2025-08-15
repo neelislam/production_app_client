@@ -56,6 +56,7 @@ class ProductCard extends StatelessWidget {
                   color: Colors.greenAccent,
                   borderRadius: BorderRadius.circular(5),
                 ),
+
                 child: Text(
                   'Offer: $offerTag',
                   style: TextStyle(color: Colors.white, fontSize: 16),
